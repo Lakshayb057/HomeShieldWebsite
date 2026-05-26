@@ -1,0 +1,841 @@
+/* Import Outfit Google Font for a modern, sleek tech-startup feel */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* --- THEME SYSTEM DECLARATIONS --- */
+
+/* Theme 1: Showroom (Modern Light Paint Gallery) - DEFAULT */
+.theme-showroom {
+    --theme-bg: #f8fafc;
+    --theme-bg-alt: #ffffff;
+    --theme-text: #0a1c3e;
+    --theme-text-muted: #5e6e7e;
+    --theme-accent: #e2a83a;
+    --theme-accent-rgb: 226, 168, 58;
+    --theme-accent-hover: #c89028;
+    --theme-border: rgba(124, 141, 158, 0.2);
+    --theme-card-bg: rgba(255, 255, 255, 0.7);
+    --theme-scroll-track: #f1f5f9;
+    --theme-scroll-thumb: #cbd5e1;
+    --theme-blob-opacity: 0.12;
+    --theme-blob-blend: multiply;
+}
+
+/* Theme 2: Navy (Deep Waterproof Shield) - IMMERSIVE DARK */
+.theme-navy {
+    --theme-bg: #050e1e;
+    --theme-bg-alt: #0a1c3e;
+    --theme-text: #ffffff;
+    --theme-text-muted: #9cb0c7;
+    --theme-accent: #e2a83a;
+    --theme-accent-rgb: 226, 168, 58;
+    --theme-accent-hover: #f0c265;
+    --theme-border: rgba(143, 160, 181, 0.15);
+    --theme-card-bg: rgba(10, 28, 62, 0.45);
+    --theme-scroll-track: #050e1e;
+    --theme-scroll-thumb: #0a1c3e;
+    --theme-blob-opacity: 0.65;
+    --theme-blob-blend: screen;
+}
+
+/* Theme 3: Orange (Warm Sunshine Terracotta Distemper) - WARM LIGHT */
+.theme-orange {
+    --theme-bg: #fffbf7;
+    --theme-bg-alt: #fff4ea;
+    --theme-text: #431407;
+    --theme-text-muted: #9a3412;
+    --theme-accent: #ea580c;
+    --theme-accent-rgb: 234, 88, 12;
+    --theme-accent-hover: #c2410c;
+    --theme-border: rgba(234, 88, 12, 0.15);
+    --theme-card-bg: rgba(255, 255, 255, 0.75);
+    --theme-scroll-track: #fff4ea;
+    --theme-scroll-thumb: #ffedd5;
+    --theme-blob-opacity: 0.15;
+    --theme-blob-blend: multiply;
+}
+
+/* Theme 4: Teal (Oceanic Crystalline Hydro Waterproofing) - COOL LIGHT */
+.theme-teal {
+    --theme-bg: #f5fffd;
+    --theme-bg-alt: #e6fffa;
+    --theme-text: #042f2e;
+    --theme-text-muted: #0d9488;
+    --theme-accent: #06b6d4;
+    --theme-accent-rgb: 6, 182, 212;
+    --theme-accent-hover: #0891b2;
+    --theme-border: rgba(6, 182, 212, 0.15);
+    --theme-card-bg: rgba(255, 255, 255, 0.75);
+    --theme-scroll-track: #e6fffa;
+    --theme-scroll-thumb: #ccfbf1;
+    --theme-blob-opacity: 0.15;
+    --theme-blob-blend: multiply;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Live Mesh Gradient Animated Background Elements */
+.live-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: var(--theme-bg);
+    transition: background-color 0.4s ease;
+}
+
+.paint-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px); /* Massive blur for fluid blending mesh effect */
+    opacity: var(--theme-blob-opacity);
+    mix-blend-mode: var(--theme-blob-blend);
+    transition: opacity 0.4s ease, mix-blend-mode 0.4s ease;
+}
+
+.blob-gold {
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(226, 168, 58, 0.25) 0%, transparent 80%);
+    top: -10%;
+    left: -10%;
+    animation: drift-gold 22s infinite alternate ease-in-out;
+}
+
+.blob-navy {
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, rgba(12, 36, 79, 0.55) 0%, transparent 80%);
+    bottom: -15%;
+    right: -10%;
+    animation: drift-navy 28s infinite alternate ease-in-out;
+}
+
+.blob-orange {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.16) 0%, transparent 80%);
+    top: 40%;
+    right: 15%;
+    animation: drift-orange 25s infinite alternate ease-in-out;
+}
+
+.blob-teal {
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, transparent 80%);
+    bottom: 30%;
+    left: 10%;
+    animation: drift-teal 20s infinite alternate ease-in-out;
+}
+
+/* Animations for drifting paint blobs */
+@keyframes drift-gold {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(15vw, 10vh) scale(1.15) rotate(120deg);
+    }
+    100% {
+        transform: translate(-5vw, 25vh) scale(0.9) rotate(360deg);
+    }
+}
+
+@keyframes drift-navy {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(-20vw, -15vh) scale(0.85) rotate(-180deg);
+    }
+    100% {
+        transform: translate(10vw, -30vh) scale(1.1) rotate(360deg);
+    }
+}
+
+@keyframes drift-orange {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-10vw, 20vh) scale(1.2);
+    }
+    100% {
+        transform: translate(15vw, -10vh) scale(0.9);
+    }
+}
+
+@keyframes drift-teal {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(25vw, -10vh) scale(0.8) rotate(90deg);
+    }
+    100% {
+        transform: translate(-10vw, 15vh) scale(1.15) rotate(180deg);
+    }
+}
+
+/* Glassmorphism custom styles tied to Theme system */
+.glass-panel {
+    background: var(--theme-card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--theme-border);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.glass-nav {
+    background: var(--theme-card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--theme-border);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Custom Scrollbar tied to Theme system */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--theme-scroll-track);
+    transition: background-color 0.4s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--theme-scroll-thumb);
+    border-radius: 5px;
+    border: 2px solid var(--theme-scroll-track);
+    transition: background-color 0.4s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-accent);
+}
+
+/* 3D tilt effects base styles */
+.tilt-card {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+.tilt-content {
+    transform: translateZ(30px);
+}
+
+/* Color Visualizer Wall Styling */
+.visualizer-wall {
+    transition: fill 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Keyframe Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-gold {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(226, 168, 58, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px 8px rgba(226, 168, 58, 0.2);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+    animation: pulse-gold 3s infinite;
+}
+
+.animate-slide-in {
+    animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Grid & Dots decorative background patterns */
+.bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+        linear-gradient(to right, rgba(124, 141, 158, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(124, 141, 158, 0.04) 1px, transparent 1px);
+    transition: background-image 0.4s ease;
+}
+
+/* Before & After Waterproofing Image Slider styles */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.1);
+    transition: box-shadow 0.4s ease;
+}
+
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.before-image {
+    z-index: 10;
+}
+
+.after-image {
+    z-index: 5;
+}
+
+.slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--theme-accent); /* Accented slider bar matching packaging */
+    z-index: 20;
+    cursor: ew-resize;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition: background-color 0.4s ease;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--theme-bg-alt); /* Light Mode button base */
+    border: 3px solid var(--theme-accent); /* Gold border */
+    color: var(--theme-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.4s ease;
+}
+
+.slider-container:hover .slider-button {
+    transform: translate(-50%, -50%) scale(1.1);
+    background-color: var(--theme-accent); /* Changes to Gold on hover */
+    color: var(--theme-bg-alt); /* Text changes to Navy */
+}
+
+/* Custom shadow effects using packaging colors */
+.shadow-gold {
+    box-shadow: 0 10px 30px -10px rgba(226, 168, 58, 0.15);
+}
+
+.shadow-orange {
+    box-shadow: 0 10px 30px -10px rgba(234, 88, 12, 0.15);
+}
+
+.shadow-slate {
+    box-shadow: 0 10px 30px -10px rgba(124, 141, 158, 0.15);
+}
+
+/* --- PREMIUM FLOATING CAPSULE NAVIGATION STYLES --- */
+
+/* Floating Capsule Bar Wrapper */
+.floating-capsule-nav {
+    border-radius: 9999px !important;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow: visible !important; /* Ensure absolute children like dropdowns overflow beautifully */
+}
+
+/* Nav Item Link Pills */
+.nav-link-pill {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--theme-text-muted);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-pill:hover,
+.nav-link-pill.active {
+    color: var(--theme-text) !important;
+    background: rgba(var(--theme-accent-rgb), 0.08);
+}
+
+.nav-link-pill::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 14px;
+    height: 3px;
+    background-color: var(--theme-accent);
+    border-radius: 9999px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-pill:hover::after,
+.nav-link-pill.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Floating Mobile menu card override with frosted glass */
+#mobile-menu {
+    border-radius: 1.5rem !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.2),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.theme-navy #mobile-menu {
+    background: linear-gradient(135deg, rgba(10, 28, 62, 0.9) 0%, rgba(5, 14, 30, 0.8) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5),
+                inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Premium Frosted Glass Bar with adaptive physics and reflective gloss sweep animation */
+.premium-glass-bar {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.05) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.floating-capsule-nav:hover .premium-glass-bar {
+    box-shadow: 0 30px 60px -10px rgba(var(--theme-accent-rgb), 0.16),
+                0 0 0 1.5px var(--theme-accent),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Adjustments for Deep Navy (Dark Theme) to maintain contrast and rich aesthetics */
+.theme-navy .premium-glass-bar {
+    background: linear-gradient(135deg, rgba(10, 28, 62, 0.5) 0%, rgba(5, 14, 30, 0.3) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.theme-navy .floating-capsule-nav:hover .premium-glass-bar {
+    box-shadow: 0 30px 60px -10px rgba(var(--theme-accent-rgb), 0.25),
+                0 0 0 1.5px var(--theme-accent),
+                inset 0 1px 2px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Diagonal glossy sheen sweep animation overlay */
+.premium-glass-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0) 15%,
+        rgba(255, 255, 255, 0.22) 50%,
+        rgba(255, 255, 255, 0) 85%,
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: none;
+    pointer-events: none;
+    z-index: 5;
+    animation: glass-shine 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.theme-navy .premium-glass-bar::before {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0) 15%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 85%,
+        transparent
+    );
+}
+
+@keyframes glass-shine {
+    0% {
+        left: -150%;
+    }
+    25% {
+        left: 150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* Styled Premium Nav Dock for links to remove clutter and improve visual clarity */
+.desktop-nav-dock {
+    background: rgba(var(--theme-accent-rgb), 0.03) !important;
+    border: 1px solid rgba(var(--theme-accent-rgb), 0.08) !important;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    padding: 0.25rem 0.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.desktop-nav-dock:hover {
+    border-color: rgba(var(--theme-accent-rgb), 0.2) !important;
+    background: rgba(var(--theme-accent-rgb), 0.05) !important;
+}
+
+.theme-navy .desktop-nav-dock {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.theme-navy .desktop-nav-dock:hover {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Premium styled theme dropdown control trigger */
+.theme-trigger-pill {
+    background: rgba(var(--theme-accent-rgb), 0.04) !important;
+    border: 1px solid rgba(var(--theme-accent-rgb), 0.15) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.theme-trigger-pill:hover {
+    background: rgba(var(--theme-accent-rgb), 0.09) !important;
+    border-color: var(--theme-accent) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25),
+                0 10px 15px -3px rgba(var(--theme-accent-rgb), 0.1) !important;
+    transform: translateY(-1px);
+}
+
+.theme-navy .theme-trigger-pill {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
+                0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.theme-navy .theme-trigger-pill:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--theme-accent) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Perfect alignment adjustment for nav elements */
+.floating-capsule-nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.floating-capsule-nav > a {
+    align-self: center;
+}
+
+.floating-capsule-nav svg {
+    vertical-align: middle;
+}
+
+/* --- 3D SECTION SCROLL SYSTEM --- */
+
+html.scroll-3d-active,
+html.scroll-3d-active body {
+    height: 100% !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 3D Scroll Container */
+html.scroll-3d-active #scroll-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+    z-index: 10;
+}
+
+/* 3D Scroll Sections */
+html.scroll-3d-active .scroll-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0); /* Force GPU compositing layer instantly */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    /* Cubic Bezier for smooth premium deceleration */
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Hide standard scrollbars for a clean look, but keep full functionality */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+html.scroll-3d-active .scroll-section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+
+/* --- 3D PERSPECTIVE TRANSITIONS --- */
+
+/* 1. Next state: Hidden below the screen, scaled down, rotated back in X */
+html.scroll-3d-active .scroll-section.state-next {
+    transform: translate3d(0, 100%, 150px) rotateX(-20deg);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 2. Previous state: Hidden above the screen, scaled down, rotated forward in X */
+html.scroll-3d-active .scroll-section.state-prev {
+    transform: translate3d(0, -100%, -250px) rotateX(20deg);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 3. Active visible state: Center, fully scale, no rotation */
+html.scroll-3d-active .scroll-section.state-active {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 5;
+}
+
+/* --- FLOATING SCROLL DOTS NAVIGATION --- */
+.scroll-dots-container {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    z-index: 40;
+    padding: 1rem 0.6rem;
+    border-radius: 9999px;
+    background: rgba(var(--theme-accent-rgb, 226, 168, 58), 0.03);
+    border: 1px solid var(--theme-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(20px, -50%, 0);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 1023px) {
+    .scroll-dots-container {
+        display: none !important;
+    }
+}
+
+.scroll-dots-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, -50%, 0);
+}
+
+.scroll-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--theme-text-muted);
+    opacity: 0.4;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-dot:hover {
+    opacity: 1;
+    background: var(--theme-accent);
+    transform: scale(1.3);
+}
+
+.scroll-dot.active {
+    opacity: 1;
+    background: var(--theme-accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(var(--theme-accent-rgb, 226, 168, 58), 0.5);
+}
+
+/* Dynamic Tooltip on Hover */
+.scroll-dot::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: var(--theme-bg-alt);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-dot:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* --- NEXT SECTION ARROW BUTTON --- */
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0px);   }
+    50%       { transform: translateY(7px);   }
+}
+
+@keyframes arrowFadeIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0px);  }
+}
+
+/* Wrapper that sits at the very end of the content in normal document flow */
+.section-next-arrow-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+    pointer-events: none; /* Let clicks pass through the empty space */
+}
+
+.section-next-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    /* pointer events blocked until section is active */
+    pointer-events: none;
+    animation: arrowFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both,
+               arrowBounce 2s ease-in-out 1s infinite;
+}
+
+/* Only allow clicks when the parent section is active */
+.scroll-section.state-active .section-next-arrow {
+    pointer-events: auto;
+}
+
+.section-next-arrow__label {
+    font-size: 0.55rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--theme-text-muted);
+    transition: color 0.25s ease;
+    white-space: nowrap;
+}
+
+.section-next-arrow__icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--theme-border);
+    background: rgba(var(--theme-accent-rgb, 226, 168, 58), 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-accent);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-next-arrow:hover .section-next-arrow__icon {
+    background: var(--theme-accent);
+    color: var(--theme-bg-alt);
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 20px rgba(var(--theme-accent-rgb, 226, 168, 58), 0.35);
+    transform: scale(1.12);
+}
+
+.section-next-arrow:hover .section-next-arrow__label {
+    color: var(--theme-accent);
+}
+
+/* Replay bounce when section becomes active */
+.scroll-section.state-active .section-next-arrow {
+    animation: arrowFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both,
+               arrowBounce 2s ease-in-out 1s infinite;
+}

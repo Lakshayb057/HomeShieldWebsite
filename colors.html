@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth theme-showroom">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeShield | World Color Catalogue & Shade Atlas</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        themeBg: 'var(--theme-bg)',
+                        themeBgAlt: 'var(--theme-bg-alt)',
+                        themeText: 'var(--theme-text)',
+                        themeTextMuted: 'var(--theme-text-muted)',
+                        themeAccent: 'var(--theme-accent)',
+                        themeAccentHover: 'var(--theme-accent-hover)',
+                        themeBorder: 'var(--theme-border)',
+                        themeCardBg: 'var(--theme-card-bg)',
+                        
+                        // Auxiliary packaging specific colors
+                        brandNavy: '#0a1c3e',
+                        brandGold: '#e2a83a',
+                        brandSlate: '#7c8d9e',
+                        orangeAccent: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        tealAccent: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./index.css">
+    <!-- Web Favicon Icon matching Packaging Logo -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <style>
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+        }
+        .faq-panel.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+        .faq-panel.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+        .color-catalog-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .color-catalog-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 30px -10px rgba(var(--theme-accent-rgb, 226, 168, 58), 0.2);
+        }
+    </style>
+</head>
+<body class="bg-themeBg text-themeText min-h-screen relative bg-grid-pattern antialiased transition-colors duration-400">
+
+    <!-- Live Mesh Gradient Animated Background -->
+    <div class="live-bg-container">
+        <div class="paint-blob blob-gold"></div>
+        <div class="paint-blob blob-navy"></div>
+        <div class="paint-blob blob-orange"></div>
+        <div class="paint-blob blob-teal"></div>
+    </div>
+
+    <!-- Premium Floating Capsule Navigation Bar -->
+    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-20 px-6 sm:px-8 flex items-center justify-between floating-capsule-nav">
+        <!-- Absolute glass background layer that clips shine sweep -->
+        <div class="absolute inset-0 -z-10 premium-glass-bar rounded-full pointer-events-none"></div>
+        
+        <!-- BRAND LOGO -->
+        <a href="./index.html" class="flex items-center space-x-3.5 group shrink-0">
+            <div class="relative w-12 h-12 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg]">
+                <!-- Outer glow aura -->
+                <span class="absolute inset-0 bg-themeAccent/15 rounded-full filter blur-md scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <!-- Custom SVG Shield Logo -->
+                <svg class="w-12 h-12 relative z-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L85 22 C85 58 50 86 50 86 C50 86 15 58 15 22 Z" fill="#0a1c3e"/>
+                    <path d="M30 22 L50 12 L85 24 C85 58 50 86 50 86 C50 86 20 62 17 38" stroke="#e2a83a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="44" y="18" width="12" height="12" fill="none" stroke="#e2a83a" stroke-width="2"/>
+                    <line x1="50" y1="18" x2="50" y2="30" stroke="#e2a83a" stroke-width="1.5"/>
+                    <line x1="44" y1="24" x2="56" y2="24" stroke="#e2a83a" stroke-width="1.5"/>
+                    <text x="50" y="49" font-family="'Outfit', sans-serif" font-weight="900" font-size="16" text-anchor="middle" letter-spacing="-0.5">
+                        <tspan fill="#ffffff">Hom</tspan><tspan fill="#e2a83a">e</tspan>
+                    </text>
+                    <text x="50" y="67" font-family="'Outfit', sans-serif" font-weight="900" font-size="17" text-anchor="middle" letter-spacing="-0.5">
+                        <tspan fill="#e2a83a">Shi</tspan><tspan fill="#ffffff">e</tspan><tspan fill="#e2a83a">ld</tspan>
+                    </text>
+                    <text x="50" y="78" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="800" font-size="5" text-anchor="middle" letter-spacing="1">PREMIUM</text>
+                </svg>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-lg font-black tracking-wider text-themeText uppercase leading-none">Home<span class="text-brandGold">Shield</span></span>
+                <span class="text-[8px] text-themeTextMuted font-bold uppercase tracking-widest leading-none mt-1">Premium Paint & Care</span>
+            </div>
+        </a>
+
+        <!-- Desktop Navigation Menu (Center-aligned pills) -->
+        <div class="hidden lg:flex items-center space-x-1 px-2 py-1 rounded-full desktop-nav-dock">
+            <a href="./index.html#about" class="nav-link-pill">About</a>
+            <a href="./index.html#products" class="nav-link-pill">Products</a>
+            <a href="./index.html#visualizer" class="nav-link-pill">Visualizer</a>
+            <a href="#" class="nav-link-pill active">Colors</a>
+            <a href="./index.html#calculator" class="nav-link-pill">Calculator</a>
+            <a href="./index.html#timeline" class="nav-link-pill">Directions</a>
+        </div>
+
+        <!-- Right Side: Interactive Controls -->
+        <div class="hidden lg:flex items-center space-x-5 shrink-0">
+            <!-- BRAND MULTI-THEME HOVER DROPDOWN -->
+            <div class="relative group" id="theme-dropdown-container">
+                <div class="flex items-center space-x-2 px-3.5 py-1.5 rounded-full cursor-pointer select-none theme-trigger-pill">
+                    <div id="active-theme-dot" class="w-3 h-3 rounded-full border-2 shadow-inner transition-all duration-300"></div>
+                    <span id="active-theme-text" class="text-[10px] font-extrabold text-themeText uppercase tracking-wider">Showroom</span>
+                    <svg class="w-3 h-3 text-themeAccent transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                
+                <div id="theme-selector-desktop" class="absolute right-0 top-full mt-2.5 w-48 bg-themeBgAlt/95 border border-themeBorder/50 rounded-2xl shadow-2xl p-2 flex flex-col space-y-1 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-300 transform origin-top-right z-50 glass-panel">
+                    <button data-theme="showroom" class="flex items-center justify-between w-full px-3 py-2 text-xs font-bold text-themeTextMuted hover:text-themeText hover:bg-themeBg/60 rounded-xl transition-all duration-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-3 h-3 rounded-full bg-[#f8fafc] border-2 border-[#e2a83a] shadow-inner animate-pulse"></span>
+                            <span>Showroom</span>
+                        </div>
+                    </button>
+                    <button data-theme="navy" class="flex items-center justify-between w-full px-3 py-2 text-xs font-bold text-themeTextMuted hover:text-themeText hover:bg-themeBg/60 rounded-xl transition-all duration-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-3 h-3 rounded-full bg-[#050e1e] border-2 border-[#e2a83a] shadow-inner"></span>
+                            <span>Navy Dark</span>
+                        </div>
+                    </button>
+                    <button data-theme="orange" class="flex items-center justify-between w-full px-3 py-2 text-xs font-bold text-themeTextMuted hover:text-themeText hover:bg-themeBg/60 rounded-xl transition-all duration-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-3 h-3 rounded-full bg-[#fffbf7] border-2 border-[#ea580c] shadow-inner"></span>
+                            <span>Orange Warm</span>
+                        </div>
+                    </button>
+                    <button data-theme="teal" class="flex items-center justify-between w-full px-3 py-2 text-xs font-bold text-themeTextMuted hover:text-themeText hover:bg-themeBg/60 rounded-xl transition-all duration-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-3 h-3 rounded-full bg-[#f5fffd] border-2 border-[#06b6d4] shadow-inner"></span>
+                            <span>Teal Crystalline</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Helpline -->
+            <a href="tel:8685060952" class="flex items-center space-x-2 text-themeTextMuted hover:text-themeText transition-colors font-medium text-xs group select-none">
+                <span class="w-7 h-7 rounded-full bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center text-brandGold group-hover:bg-themeAccent group-hover:text-themeBgAlt transition-all duration-300">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                </span>
+                <span class="font-extrabold tracking-wide text-themeText">86850 60952</span>
+            </a>
+            
+            <!-- Book Inspection -->
+            <a href="./index.html#contact" class="px-5 py-2.5 bg-themeAccent hover:bg-themeAccentHover text-themeBgAlt text-xs font-black uppercase tracking-wider rounded-full shadow-lg hover:shadow-xl hover:shadow-themeAccent/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 animate-pulse-gold relative overflow-hidden group">
+                <span class="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></span>
+                <span>Free Inspection</span>
+            </a>
+        </div>
+
+        <!-- Mobile Toggler -->
+        <div class="lg:hidden flex items-center">
+            <button id="mobile-menu-btn" class="w-10 h-10 rounded-full border border-themeBorder/40 flex items-center justify-center text-themeTextMuted hover:text-themeText hover:bg-themeBg/40 transition-colors focus:outline-none">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu (Floating Glassmorphic Card Overlay) -->
+        <div id="mobile-menu" class="hidden lg:hidden fixed top-24 left-1/2 -translate-x-1/2 w-full bg-themeBgAlt/95 border border-themeBorder/50 rounded-2xl shadow-2xl p-5 space-y-4 z-40 backdrop-blur-xl">
+            <!-- Mobile theme selector dots -->
+            <div class="space-y-1.5">
+                <p class="text-[9px] font-black uppercase tracking-widest text-themeTextMuted">Select App Theme</p>
+                <div class="flex items-center space-x-3 p-2 bg-themeBg/50 border border-themeBorder/20 rounded-xl" id="theme-selector-mobile">
+                    <button data-theme="showroom" class="flex-1 py-1.5 text-[10px] font-bold bg-[#f8fafc] text-[#0a1c3e] border border-[#e2a83a] rounded-lg">Showroom</button>
+                    <button data-theme="navy" class="flex-1 py-1.5 text-[10px] font-bold bg-[#050e1e] text-white border border-[#e2a83a] rounded-lg">Navy</button>
+                    <button data-theme="orange" class="flex-1 py-1.5 text-[10px] font-bold bg-[#fffbf7] text-[#431407] border border-[#ea580c] rounded-lg">Orange</button>
+                    <button data-theme="teal" class="flex-1 py-1.5 text-[10px] font-bold bg-[#f5fffd] text-[#042f2e] border border-[#06b6d4] rounded-lg">Teal</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-2 text-center text-xs font-bold">
+                <a href="./index.html#about" class="py-2.5 rounded-lg border border-themeBorder/30 text-themeTextMuted hover:text-themeText hover:bg-themeBg/40 transition-colors">About Us</a>
+                <a href="./index.html#products" class="py-2.5 rounded-lg border border-themeBorder/30 text-themeTextMuted hover:text-themeText hover:bg-themeBg/40 transition-colors">Our Products</a>
+                <a href="./index.html#visualizer" class="py-2.5 rounded-lg border border-themeBorder/30 text-themeTextMuted hover:text-themeText hover:bg-themeBg/40 transition-colors">Visualizer</a>
+                <a href="#" class="py-2.5 rounded-lg border border-themeBorder/30 text-themeText hover:text-themeText hover:bg-themeBg/40 transition-colors">Color Catalog</a>
+                <a href="./index.html#calculator" class="py-2.5 rounded-lg border border-themeBorder/30 text-themeTextMuted hover:text-themeText hover:bg-themeBg/40 transition-colors">Calculator</a>
+                <a href="./index.html#timeline" class="py-2.5 rounded-lg border border-themeBorder/30 text-themeTextMuted hover:text-themeText hover:bg-themeBg/40 transition-colors">Directions</a>
+            </div>
+            
+            <div class="pt-2 border-t border-themeBorder/30 flex items-center justify-between">
+                <a href="tel:8685060952" class="flex items-center space-x-2 text-xs text-themeText font-extrabold group">
+                    <span class="w-7 h-7 rounded-full bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center text-brandGold group-hover:bg-themeAccent group-hover:text-themeBgAlt transition-all duration-300">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                    </span>
+                    <span>86850 60952</span>
+                </a>
+                <a href="./index.html#contact" class="px-5 py-2 bg-themeAccent text-themeBgAlt text-[10px] font-black uppercase tracking-wider rounded-full text-center">Book Inspection</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="relative pt-32 pb-12 overflow-hidden bg-gradient-to-b from-brandNavy/10 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="inline-flex items-center space-x-2 bg-themeBgAlt border border-themeBorder px-4 py-1.5 rounded-full shadow-inner">
+                <span class="w-2.5 h-2.5 rounded-full bg-themeAccent animate-pulse"></span>
+                <span class="text-xs font-bold text-themeTextMuted uppercase tracking-widest">HomeShield Associated Catalogue</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-themeText tracking-tight">
+                Find Your Perfect Shade
+            </h1>
+            <p class="text-themeTextMuted text-base sm:text-lg max-w-2xl mx-auto font-medium">
+                Explore the definitive global color directory. Filter shades by room, temperature, or tonality, try our interactive personality quiz, and send your selected tone straight into the 3D visualizer!
+            </p>
+        </div>
+    </header>
+
+    <!-- Color Personality Quiz -->
+    <section class="pb-16 max-w-4xl mx-auto px-4 relative z-10">
+        <div class="bg-themeBgAlt border border-themeBorder p-8 rounded-3xl shadow-2xl glass-panel space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-themeAccent">Colour Quiz Sandbox</span>
+                <h3 class="text-2xl font-black text-themeText">Find Shade that Matches Your Personality</h3>
+                <p class="text-xs text-themeTextMuted font-medium">Tell us your vibe, and our matching matrix will resolve your perfect structural coating tone.</p>
+            </div>
+
+            <!-- Quiz vibe choices -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="quiz-options-container">
+                <button data-vibe="Calm" class="quiz-vibe-btn p-5 rounded-2xl border border-themeBorder bg-themeBg text-themeText hover:border-themeAccent transition-all flex flex-col items-center justify-center space-y-3 group">
+                    <span class="w-8 h-8 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center font-bold">🕊️</span>
+                    <span class="text-xs font-black uppercase tracking-wider">Calm</span>
+                </button>
+                <button data-vibe="Spiritual" class="quiz-vibe-btn p-5 rounded-2xl border border-themeBorder bg-themeBg text-themeText hover:border-themeAccent transition-all flex flex-col items-center justify-center space-y-3 group">
+                    <span class="w-8 h-8 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center font-bold">✨</span>
+                    <span class="text-xs font-black uppercase tracking-wider">Spiritual</span>
+                </button>
+                <button data-vibe="Friendly" class="quiz-vibe-btn p-5 rounded-2xl border border-themeBorder bg-themeBg text-themeText hover:border-themeAccent transition-all flex flex-col items-center justify-center space-y-3 group">
+                    <span class="w-8 h-8 bg-orange-500/10 text-orange-500 rounded-xl flex items-center justify-center font-bold">😊</span>
+                    <span class="text-xs font-black uppercase tracking-wider">Friendly</span>
+                </button>
+                <button data-vibe="Passionate" class="quiz-vibe-btn p-5 rounded-2xl border border-themeBorder bg-themeBg text-themeText hover:border-themeAccent transition-all flex flex-col items-center justify-center space-y-3 group">
+                    <span class="w-8 h-8 bg-red-500/10 text-red-500 rounded-xl flex items-center justify-center font-bold">🔥</span>
+                    <span class="text-xs font-black uppercase tracking-wider">Passionate</span>
+                </button>
+                <button data-vibe="Creative" class="quiz-vibe-btn p-5 rounded-2xl border border-themeBorder bg-themeBg text-themeText hover:border-themeAccent transition-all flex flex-col items-center justify-center space-y-3 group">
+                    <span class="w-8 h-8 bg-purple-500/10 text-purple-500 rounded-xl flex items-center justify-center font-bold">🎨</span>
+                    <span class="text-xs font-black uppercase tracking-wider">Creative</span>
+                </button>
+                <button data-vibe="Sophisticated" class="quiz-vibe-btn p-5 rounded-2xl border border-themeBorder bg-themeBg text-themeText hover:border-themeAccent transition-all flex flex-col items-center justify-center space-y-3 group">
+                    <span class="w-8 h-8 bg-slate-500/10 text-slate-500 rounded-xl flex items-center justify-center font-bold">💎</span>
+                    <span class="text-xs font-black uppercase tracking-wider">Sophisticated</span>
+                </button>
+            </div>
+
+            <!-- Quiz Output Section (Hidden by Default) -->
+            <div id="quiz-result-box" class="hidden bg-themeBg p-6 rounded-2xl border border-themeBorder text-center space-y-4 animate-float">
+                <div class="mx-auto w-12 h-12 bg-themeAccent/15 text-themeAccent rounded-full flex items-center justify-center font-black">✓</div>
+                <div class="space-y-1.5">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-themeTextMuted">Your Personality Match:</p>
+                    <h4 id="quiz-result-title" class="text-lg font-black text-themeText">Sophisticated Vibe</h4>
+                    <p id="quiz-result-desc" class="text-xs text-themeTextMuted max-w-md mx-auto leading-relaxed">You radiate confidence and luxury. We highly recommend our signature slate gray palette.</p>
+                </div>
+                <!-- Dynamic Shade Card matching vibe -->
+                <div class="max-w-xs mx-auto p-4 bg-themeBgAlt border border-themeBorder rounded-xl flex items-center justify-between shadow-md">
+                    <div class="flex items-center space-x-3">
+                        <span id="quiz-result-swatch" class="w-8 h-8 rounded-full border shadow-inner"></span>
+                        <div class="text-left">
+                            <p id="quiz-result-shade-name" class="text-xs font-black text-themeText">Damp Proof Grey</p>
+                            <p id="quiz-result-shade-code" class="text-[9px] font-mono text-themeTextMuted font-bold">#7C8D9E</p>
+                        </div>
+                    </div>
+                    <button id="btn-paint-quiz-shade" class="px-3 py-1.5 bg-themeAccent text-themeBgAlt text-[9px] font-black uppercase tracking-widest rounded-lg hover:opacity-90 transition-all">
+                        Paint Room
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-2">
+                <span class="text-[10px] text-themeTextMuted font-bold">Select 1 option to unlock results</span>
+                <button id="btn-submit-quiz" class="px-6 py-2.5 bg-themeAccent text-themeBgAlt text-xs font-black uppercase tracking-widest rounded-xl hover:opacity-90 transition-all disabled:opacity-40" disabled>
+                    Continue
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Colors Directory -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Left Side: Collapsible Filter Side Panel (3 cols) -->
+            <aside class="lg:col-span-3 space-y-6">
+                <div class="bg-themeBgAlt border border-themeBorder p-6 rounded-2xl shadow-lg space-y-6 glass-panel">
+                    <h3 class="text-sm font-black uppercase tracking-wider text-themeText border-b border-themeBorder pb-3 flex items-center space-x-2 shrink-0">
+                        <svg class="w-4 h-4 text-themeAccent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                        <span>Filter Catalogue</span>
+                    </h3>
+
+                    <!-- Filter 1: Color Temperature -->
+                    <div class="space-y-3">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-themeTextMuted">Color Temperature</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent">
+                                <input type="checkbox" data-filter="temp" value="cool" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Cool Shades (1,170)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent">
+                                <input type="checkbox" data-filter="temp" value="warm" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Warm Shades (1,030)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Filter 2: Tonality -->
+                    <div class="space-y-3">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-themeTextMuted">Tonality</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent">
+                                <input type="checkbox" data-filter="tone" value="light" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Light Tones (839)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent">
+                                <input type="checkbox" data-filter="tone" value="medium" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Medium Tones (694)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent">
+                                <input type="checkbox" data-filter="tone" value="dark" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Dark Tones (667)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Filter 3: Room Compatibility -->
+                    <div class="space-y-3">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-themeTextMuted">Room Type</p>
+                        <div class="space-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="bedroom" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Bedroom (776)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="living" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Living Room (877)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="highlight" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Highlight Walls (551)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="study" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Study Room (341)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="hallway" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Hallways (297)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="kids" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Kids Room (266)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="kitchen" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Kitchen (197)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer text-xs font-bold text-themeText hover:text-themeAccent py-0.5">
+                                <input type="checkbox" data-filter="room" value="balcony" class="w-4 h-4 rounded border-themeBorder text-themeAccent focus:ring-themeAccent accent-themeAccent">
+                                <span>Balcony (183)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Reset all filters -->
+                    <button id="btn-reset-filters" class="w-full py-2 bg-themeBg hover:bg-themeBgAlt text-themeTextMuted hover:text-themeText text-[10px] font-extrabold uppercase tracking-widest border border-themeBorder rounded-xl transition-all">
+                        Reset All Filters
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Right Side: Color Family Selector & Catalogue Grid (9 cols) -->
+            <section class="lg:col-span-9 space-y-6">
+                <!-- Color family horizontal scroll bar -->
+                <div class="bg-themeBgAlt border border-themeBorder p-2 rounded-2xl shadow-md overflow-x-auto flex space-x-2 custom-scrollbar glass-panel">
+                    <button data-family="all" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl bg-themeAccent text-themeBgAlt shadow-md transition-all">ALL COLOURS</button>
+                    <button data-family="grey" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">GREYS</button>
+                    <button data-family="blue" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">BLUES</button>
+                    <button data-family="brown" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">BROWNS</button>
+                    <button data-family="red" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">REDS & ORANGES</button>
+                    <button data-family="yellow" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">YELLOWS & GREENS</button>
+                    <button data-family="purple" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">PURPLES & PINKS</button>
+                    <button data-family="white" class="family-tab shrink-0 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl text-themeTextMuted hover:text-themeText hover:bg-themeBg transition-all">WHITES & OFF WHITES</button>
+                </div>
+
+                <!-- Grid of 23 catalog colors (Rendered Dynamically via JS) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6" id="catalog-shades-grid">
+                    <!-- Dynamic injection of shades -->
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center pt-8" id="load-more-container">
+                    <button id="btn-load-more" class="px-8 py-3.5 bg-themeBgAlt hover:bg-themeBg border border-themeBorder text-themeText text-xs font-black uppercase tracking-widest rounded-xl transition-all shadow-md transform hover:-translate-y-0.5 inline-flex items-center space-x-2">
+                        <span>LOAD MORE COLOURS</span>
+                        <svg class="w-4 h-4 text-themeAccent animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" /></svg>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Recommended shades list -->
+    <section class="py-20 bg-themeBgAlt border-t border-b border-themeBorder relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                <span class="text-xs font-extrabold text-themeAccent uppercase tracking-widest">Aesthetic Suggestions</span>
+                <h3 class="text-2xl font-black text-themeText">Recommended Shades For You</h3>
+                <p class="text-themeTextMuted text-xs font-medium">Curated high-performance combinations trusted by premier interior decorators.</p>
+            </div>
+
+            <!-- Recommended shades list -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <!-- confetti (8300) -->
+                <div class="glass-panel p-4 rounded-2xl flex flex-col justify-between space-y-4 shadow-sm hover:border-themeAccent/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-24 w-full rounded-xl shadow-inner cursor-pointer recommended-paint-trigger" style="background-color: #f7a2b9" data-hex="#F7A2B9" data-name="Confetti"></div>
+                    <div class="text-center">
+                        <p class="text-xs font-extrabold text-themeText">Confetti</p>
+                        <p class="text-[9px] text-themeTextMuted font-bold font-mono mt-0.5">8300</p>
+                    </div>
+                </div>
+                <!-- pristine linen (L153) -->
+                <div class="glass-panel p-4 rounded-2xl flex flex-col justify-between space-y-4 shadow-sm hover:border-themeAccent/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-24 w-full rounded-xl shadow-inner cursor-pointer recommended-paint-trigger" style="background-color: #e5dfd3" data-hex="#E5DFD3" data-name="Pristine Linen"></div>
+                    <div class="text-center">
+                        <p class="text-xs font-extrabold text-themeText">Pristine Linen</p>
+                        <p class="text-[9px] text-themeTextMuted font-bold font-mono mt-0.5">L153</p>
+                    </div>
+                </div>
+                <!-- powder puff (7972) -->
+                <div class="glass-panel p-4 rounded-2xl flex flex-col justify-between space-y-4 shadow-sm hover:border-themeAccent/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-24 w-full rounded-xl shadow-inner cursor-pointer recommended-paint-trigger" style="background-color: #f5eae0" data-hex="#F5EAE0" data-name="Powder Puff"></div>
+                    <div class="text-center">
+                        <p class="text-xs font-extrabold text-themeText">Powder Puff</p>
+                        <p class="text-[9px] text-themeTextMuted font-bold font-mono mt-0.5">7972</p>
+                    </div>
+                </div>
+                <!-- white cameo (L145) -->
+                <div class="glass-panel p-4 rounded-2xl flex flex-col justify-between space-y-4 shadow-sm hover:border-themeAccent/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-24 w-full rounded-xl shadow-inner cursor-pointer recommended-paint-trigger" style="background-color: #ebdcd2" data-hex="#EBDCD2" data-name="White Cameo"></div>
+                    <div class="text-center">
+                        <p class="text-xs font-extrabold text-themeText">White Cameo</p>
+                        <p class="text-[9px] text-themeTextMuted font-bold font-mono mt-0.5">L145</p>
+                    </div>
+                </div>
+                <!-- sands of time (4202) -->
+                <div class="glass-panel p-4 rounded-2xl flex flex-col justify-between space-y-4 shadow-sm hover:border-themeAccent/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-24 w-full rounded-xl shadow-inner cursor-pointer recommended-paint-trigger" style="background-color: #d1c1ad" data-hex="#D1C1AD" data-name="Sands of Time"></div>
+                    <div class="text-center">
+                        <p class="text-xs font-extrabold text-themeText">Sands of Time</p>
+                        <p class="text-[9px] text-themeTextMuted font-bold font-mono mt-0.5">4202</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketing & Service enquire segment -->
+    <section class="py-16 max-w-5xl mx-auto px-4 relative z-10">
+        <div class="glass-panel p-8 sm:p-12 rounded-3xl relative overflow-hidden shadow-2xl bg-gradient-to-r from-brandNavy/35 to-transparent text-themeText">
+            <div class="absolute top-0 right-0 w-80 h-full bg-cover bg-center opacity-15" style="background-image: url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="relative z-10 max-w-xl space-y-6">
+                <span class="text-[10px] font-black uppercase tracking-widest text-themeAccent">End-to-End Service</span>
+                <h3 class="text-3xl font-black leading-tight text-themeText">HomeShield Beautiful Home Painting Service</h3>
+                <p class="text-sm text-themeTextMuted leading-relaxed font-medium">
+                    Get an end-to-end safe, fast, and completely hassle-free wall painting experience with HomeShield Beautiful Home Painting Service. Our certified specialists handle everything from moisture scanning to final cleanup.
+                </p>
+                <div class="pt-2">
+                    <a href="./index.html#contact" class="px-8 py-3.5 bg-themeAccent hover:bg-themeAccentHover text-themeBgAlt text-xs font-black uppercase tracking-widest rounded-xl transition-all shadow-md inline-block">
+                        ENQUIRE NOW
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exploring the HomeShield Colour Catalogue Guide -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-themeText">
+                <span class="text-xs font-extrabold text-themeAccent uppercase tracking-widest font-black">Interactive Guideline</span>
+                <h2 class="text-3xl font-black">Explore the HomeShield Colour Catalogue</h2>
+                <p class="text-sm text-themeTextMuted leading-relaxed font-medium">
+                    With the HomeShield Colour Catalogue, get inspired by various color palettes from soothing neutrals to vibrant accents. Choose from timeless classics to contemporary palettes tailored to every taste. With our color catalog, you will reflect your unique personality effortlessly.
+                </p>
+
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-start space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-themeAccent/10 text-themeAccent text-xs font-black flex items-center justify-center shrink-0 mt-0.5">●</span>
+                        <div class="space-y-0.5">
+                            <h4 class="text-sm font-black">Colour Selection Tips</h4>
+                            <p class="text-xs text-themeTextMuted leading-relaxed font-medium">Coordinate shades according to wall sizes and existing furniture items, ensuring cohesive warmth.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-themeAccent/10 text-themeAccent text-xs font-black flex items-center justify-center shrink-0 mt-0.5">●</span>
+                        <div class="space-y-0.5">
+                            <h4 class="text-sm font-black">Use Our Colour Visualizer</h4>
+                            <p class="text-xs text-themeTextMuted leading-relaxed font-medium">Experiment with endless combinations using our Visualizer tool. Instantly see how shades transform your room.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-themeAccent/10 text-themeAccent text-xs font-black flex items-center justify-center shrink-0 mt-0.5">●</span>
+                        <div class="space-y-0.5">
+                            <h4 class="text-sm font-black">Get Inspired by Trends</h4>
+                            <p class="text-xs text-themeTextMuted leading-relaxed font-medium">From nature-inspired organic hues to bold accent statement walls, explore design directions reflecting your dream style.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pitch: Why choose HomeShield -->
+            <div class="bg-themeBgAlt border border-themeBorder p-8 sm:p-10 rounded-3xl shadow-xl glass-panel space-y-6 text-themeText">
+                <div class="space-y-2">
+                    <span class="text-[9px] font-black uppercase tracking-widest text-themeAccent">Industry Excellence</span>
+                    <h3 class="text-2xl font-black">Why Choose HomeShield?</h3>
+                    <p class="text-xs text-themeTextMuted font-medium">Trusted by millions of homeowners and design professionals worldwide, offering decades of structural engineering durability.</p>
+                </div>
+                <ul class="space-y-4 text-xs font-semibold text-themeTextMuted leading-relaxed">
+                    <li class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-themeAccent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span><strong>Decades of Excellence:</strong> Unmatched reliability, premium acrylic pigments, and long-lasting wall bonding coatings.</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-themeAccent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span><strong>Superior Quality Products:</strong> High resin density formulas blocking dampness, peeling, flaking, and fungal spots.</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-themeAccent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span><strong>Personalized Guidance:</strong> End-to-end support from colour consultation experts to help navigate exact matching product catalogs.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Blogs Section -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-themeBorder">
+        <div class="flex justify-between items-end mb-12">
+            <div class="space-y-2">
+                <span class="text-xs font-extrabold text-themeAccent uppercase tracking-widest">Visual Inspirations</span>
+                <h3 class="text-2xl font-black text-themeText">Latest From Our Blogs</h3>
+            </div>
+            <a href="#" class="px-4 py-2 bg-themeBgAlt hover:bg-themeBg border border-themeBorder text-themeText text-[10px] font-black uppercase tracking-widest rounded-xl transition-all">
+                VIEW ALL BLOGS
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Blog 1 -->
+            <div class="glass-panel rounded-2xl overflow-hidden hover:border-themeAccent/45 transition-all duration-300 flex flex-col justify-between group">
+                <div class="h-44 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80" alt="Calming Room Calming Influence Blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 space-y-3">
+                    <span class="text-[8px] font-black uppercase tracking-widest text-themeAccent bg-themeBg px-2.5 py-1 rounded-md">Shades & Psychology</span>
+                    <h4 class="text-sm font-black text-themeText leading-snug group-hover:text-themeAccent transition-colors">5 Wall Colours For Home With A Calming Influence</h4>
+                </div>
+            </div>
+            <!-- Blog 2 -->
+            <div class="glass-panel rounded-2xl overflow-hidden hover:border-themeAccent/45 transition-all duration-300 flex flex-col justify-between group">
+                <div class="h-44 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=600&q=80" alt="Terracotta combinations master bedroom combinations blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 space-y-3">
+                    <span class="text-[8px] font-black uppercase tracking-widest text-themeAccent bg-themeBg px-2.5 py-1 rounded-md">Master Bedrooms</span>
+                    <h4 class="text-sm font-black text-themeText leading-snug group-hover:text-themeAccent transition-colors">8 Master Bedroom Colour Combinations From HomeShield</h4>
+                </div>
+            </div>
+            <!-- Blog 3 -->
+            <div class="glass-panel rounded-2xl overflow-hidden hover:border-themeAccent/45 transition-all duration-300 flex flex-col justify-between group">
+                <div class="h-44 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" alt="Living room grey sofa cushion decor blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 space-y-3">
+                    <span class="text-[8px] font-black uppercase tracking-widest text-themeAccent bg-themeBg px-2.5 py-1 rounded-md">Budget Decor</span>
+                    <h4 class="text-sm font-black text-themeText leading-snug group-hover:text-themeAccent transition-colors">10 Ideas To Decorate The Living Room On A Budget</h4>
+                </div>
+            </div>
+            <!-- Blog 4 -->
+            <div class="glass-panel rounded-2xl overflow-hidden hover:border-themeAccent/45 transition-all duration-300 flex flex-col justify-between group">
+                <div class="h-44 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Modern sofa designs home design blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 space-y-3">
+                    <span class="text-[8px] font-black uppercase tracking-widest text-themeAccent bg-themeBg px-2.5 py-1 rounded-md">Design Trends</span>
+                    <h4 class="text-sm font-black text-themeText leading-snug group-hover:text-themeAccent transition-colors">5 Latest Sofa Set Designs for the Modern Home</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collapsible FAQs Segment -->
+    <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-themeBorder">
+        <div class="text-center mb-12 space-y-2">
+            <span class="text-xs font-extrabold text-themeAccent uppercase tracking-widest">Knowledgebase Hub</span>
+            <h3 class="text-2xl font-black text-themeText">Frequently Asked Questions</h3>
+            <p class="text-themeTextMuted text-xs font-medium">Resolving your wall coatings, color selection, and application queries.</p>
+        </div>
+
+        <div class="space-y-4" id="faqs-accordion-container">
+            <!-- FAQ 1 -->
+            <div class="faq-panel border border-themeBorder rounded-2xl bg-themeBgAlt overflow-hidden transition-all duration-300 shadow-sm hover:border-themeAccent/20">
+                <button class="w-full px-6 py-5 text-left text-xs font-black uppercase tracking-wider text-themeText flex justify-between items-center focus:outline-none">
+                    <span>How do I select a wall colour for my house?</span>
+                    <svg class="faq-chevron w-4 h-4 text-themeAccent transition-transform duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="faq-answer px-6 pb-5 text-xs text-themeTextMuted font-medium leading-relaxed border-t border-themeBorder/40">
+                    Wall color selection is an important process. First, decide whether you want to use a single wall color throughout or a combination of multiple shades in each room. Consider the size of the room and the type of space (bedroom, kids room, living room) since each has a different psychological requirement. Natural lighting also affects perception; vibrant shades work best in bright rooms, while soft tones suit dim areas. Use our color catalog, request a test swatch, and match it against existing furniture components to prevent clashing.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-panel border border-themeBorder rounded-2xl bg-themeBgAlt overflow-hidden transition-all duration-300 shadow-sm hover:border-themeAccent/20">
+                <button class="w-full px-6 py-5 text-left text-xs font-black uppercase tracking-wider text-themeText flex justify-between items-center focus:outline-none">
+                    <span>What are the colour trends in home painting?</span>
+                    <svg class="faq-chevron w-4 h-4 text-themeAccent transition-transform duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="faq-answer px-6 pb-5 text-xs text-themeTextMuted font-medium leading-relaxed border-t border-themeBorder/40">
+                    Latest trends embrace organic nature-inspired tones, warm terracotta accents, calm pastel teals, and cozy off-whites. Homeowners are increasingly choosing contrast accent walls (Deep Navy, Royal Gold) inside minimal light gray or white backdrops to create high-end visual depth and startup-like luxury tech aesthetics.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-panel border border-themeBorder rounded-2xl bg-themeBgAlt overflow-hidden transition-all duration-300 shadow-sm hover:border-themeAccent/20">
+                <button class="w-full px-6 py-5 text-left text-xs font-black uppercase tracking-wider text-themeText flex justify-between items-center focus:outline-none">
+                    <span>How does Vastu affect colour selection?</span>
+                    <svg class="faq-chevron w-4 h-4 text-themeAccent transition-transform duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="faq-answer px-6 pb-5 text-xs text-themeTextMuted font-medium leading-relaxed border-t border-themeBorder/40">
+                    Vastu suggests utilizing light, refreshing, and calming colors to direct positive energy flow. Light yellows, cozy off-whites, and cream tones are highly recommended for living rooms, light pastel blues or greens for master bedrooms to enhance peace, and warm gold accents in worship prayer zones representing spiritual brilliance.
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-panel border border-themeBorder rounded-2xl bg-themeBgAlt overflow-hidden transition-all duration-300 shadow-sm hover:border-themeAccent/20">
+                <button class="w-full px-6 py-5 text-left text-xs font-black uppercase tracking-wider text-themeText flex justify-between items-center focus:outline-none">
+                    <span>How do I coordinate wall colours with furniture?</span>
+                    <svg class="faq-chevron w-4 h-4 text-themeAccent transition-transform duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="faq-answer px-6 pb-5 text-xs text-themeTextMuted font-medium leading-relaxed border-t border-themeBorder/40">
+                    For dark wooden furniture or accents, contrast them with light neutral backdrops like pristine linen or soft off-whites. If you have light, minimalist Scandinavian furniture, you can introduce high-contrast bold backdrops like Deep Navy or Ocean Teal to establish a powerful, sophisticated visual center of gravity in the room.
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-panel border border-themeBorder rounded-2xl bg-themeBgAlt overflow-hidden transition-all duration-300 shadow-sm hover:border-themeAccent/20">
+                <button class="w-full px-6 py-5 text-left text-xs font-black uppercase tracking-wider text-themeText flex justify-between items-center focus:outline-none">
+                    <span>What colors make a room look bigger and brighter?</span>
+                    <svg class="faq-chevron w-4 h-4 text-themeAccent transition-transform duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="faq-answer px-6 pb-5 text-xs text-themeTextMuted font-medium leading-relaxed border-t border-themeBorder/40">
+                    High light-reflecting whites (like our Shield Gloss White L178), soft pastels (Air Breeze), and warm creams allow light to bounce widely across walls, visually pushing the boundaries of the room. Combining these with a glossy or soft sheen paint finish multiplies this effect, making small bedrooms feel enormously spacious.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Replicated footer from index.html -->
+    <footer class="bg-brandNavy border-t border-slate-800/80 text-slate-400 relative overflow-hidden py-16">
+        <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-slate-800/60 pb-16">
+            
+            <div class="md:col-span-4 space-y-6">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L85 22 C85 58 50 86 50 86 C50 86 15 58 15 22 Z" fill="#0a1c3e"/>
+                        <path d="M30 22 L50 12 L85 24 C85 58 50 86 50 86 C50 86 20 62 17 38" stroke="#e2a83a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="44" y="18" width="12" height="12" fill="none" stroke="#e2a83a" stroke-width="2"/>
+                        <line x1="50" y1="18" x2="50" y2="30" stroke="#e2a83a" stroke-width="1.5"/>
+                        <line x1="44" y1="24" x2="56" y2="24" stroke="#e2a83a" stroke-width="1.5"/>
+                        <text x="50" y="49" font-family="'Outfit', sans-serif" font-weight="900" font-size="16" text-anchor="middle" letter-spacing="-0.5">
+                            <tspan fill="#ffffff">Hom</tspan><tspan fill="#e2a83a">e</tspan>
+                        </text>
+                        <text x="50" y="67" font-family="'Outfit', sans-serif" font-weight="900" font-size="17" text-anchor="middle" letter-spacing="-0.5">
+                            <tspan fill="#e2a83a">Shi</tspan><tspan fill="#ffffff">e</tspan><tspan fill="#e2a83a">ld</tspan>
+                        </text>
+                    </svg>
+                    <div class="flex flex-col">
+                        <span class="text-lg font-black tracking-wider text-white uppercase leading-none">Home<span class="text-brandGold">Shield</span></span>
+                        <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest leading-none mt-1">Premium Wall Coating Solutions</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 font-medium leading-relaxed">
+                    Protecting homes and shielding structural masonry against severe climate moisture dampness since 2026. Certified premium quality wall PRIMER, Matt Emulsion, and bright water-washable Distemper.
+                </p>
+                <div class="flex items-center space-x-3 text-xs text-white">
+                    <span class="font-extrabold uppercase text-[9px] tracking-wider text-slate-500">Helpline Helpline:</span>
+                    <a href="tel:8685060952" class="font-black text-brandGold hover:underline tracking-wide">86850 60952</a>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <h4 class="text-[10px] font-black text-white pb-2 border-b border-slate-800/40">Quick Sections</h4>
+                <div class="flex flex-col space-y-3 font-extrabold">
+                    <a href="./index.html#about" class="hover:text-white transition-colors">About Us</a>
+                    <a href="./index.html#products" class="hover:text-white transition-colors">Our Products</a>
+                    <a href="./index.html#visualizer" class="hover:text-white transition-colors">Color Studio</a>
+                    <a href="#" class="text-white transition-colors">Color Atlas</a>
+                    <a href="./index.html#calculator" class="hover:text-white transition-colors">Calculator</a>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <h4 class="text-[10px] font-black text-white pb-2 border-b border-slate-800/40">Catalogue</h4>
+                <div class="flex flex-col space-y-3 font-extrabold">
+                    <a href="./colors.html?vibe=warm" class="hover:text-white transition-colors">Warm Accents</a>
+                    <a href="./colors.html?vibe=cool" class="hover:text-white transition-colors">Cool Tones</a>
+                    <a href="./colors.html?vibe=earthy" class="hover:text-white transition-colors">Earthy Tones</a>
+                    <a href="./colors.html?vibe=pastel" class="hover:text-white transition-colors">Cozy Pastels</a>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 space-y-4">
+                <h4 class="text-[10px] font-black text-white pb-2 border-b border-slate-800/40 uppercase tracking-widest">Lead Enquiries Registry</h4>
+                <p class="text-xs text-slate-400 font-medium leading-relaxed">
+                    Planning a home painting renovation or require direct wall moisture scanning visits? Call our hotline or book a free service consultation.
+                </p>
+                <div class="pt-2">
+                    <a href="./index.html#contact" class="px-6 py-3 bg-brandGold text-brandNavy hover:bg-brandGold/90 text-[10px] font-black uppercase tracking-wider rounded-xl transition-all shadow-md inline-block">Book Expert Visit</a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+            <p>© 2026 HomeShield Paint Startup. All rights reserved.</p>
+            <p class="mt-2 md:mt-0">Designed in partnership with HomeShield Guidelines.</p>
+        </div>
+    </footer>
+
+    <!-- Clipboard Confirmation Toast Alert -->
+    <div id="copy-toast" class="fixed bottom-8 right-8 z-50 bg-themeBgAlt border-2 border-themeAccent px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none glass-panel">
+        <div class="w-6 h-6 bg-themeAccent/15 text-themeAccent flex items-center justify-center rounded-lg shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-[9px] text-themeTextMuted font-bold uppercase tracking-wider">System Clipboard</span>
+            <span id="copy-toast-text" class="text-xs text-themeText font-black uppercase tracking-wider">HEX Code Copied!</span>
+        </div>
+    </div>
+
+    <!-- Page Specific Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ==========================================
+            // A. DYNAMIC MULTI-THEME MANAGER (colors.html)
+            // ==========================================
+            const desktopSwatches = document.querySelectorAll('#theme-selector-desktop button');
+            const mobileButtons = document.querySelectorAll('#theme-selector-mobile button');
+            const themesList = ['showroom', 'navy', 'orange', 'teal'];
+
+            const themeMetaData = {
+                showroom: { name: "Showroom", bg: "#f8fafc", border: "#e2a83a" },
+                navy: { name: "Navy Dark", bg: "#050e1e", border: "#e2a83a" },
+                orange: { name: "Orange Warm", bg: "#fffbf7", border: "#ea580c" },
+                teal: { name: "Teal Crystalline", bg: "#f5fffd", border: "#06b6d4" }
+            };
+
+            const applyAppTheme = (theme) => {
+                if (!themesList.includes(theme)) theme = 'showroom';
+
+                themesList.forEach(t => {
+                    document.documentElement.classList.remove(`theme-${t}`);
+                });
+                document.documentElement.classList.add(`theme-${theme}`);
+
+                const activeThemeDot = document.getElementById('active-theme-dot');
+                const activeThemeText = document.getElementById('active-theme-text');
+                if (activeThemeDot && activeThemeText && themeMetaData[theme]) {
+                    activeThemeDot.style.backgroundColor = themeMetaData[theme].bg;
+                    activeThemeDot.style.borderColor = themeMetaData[theme].border;
+                    activeThemeText.textContent = themeMetaData[theme].name;
+                }
+
+                desktopSwatches.forEach(btn => {
+                    const btnTheme = btn.getAttribute('data-theme');
+                    if (btnTheme === theme) {
+                        btn.classList.add('hidden');
+                    } else {
+                        btn.classList.remove('hidden');
+                    }
+                });
+
+                mobileButtons.forEach(btn => {
+                    const btnTheme = btn.getAttribute('data-theme');
+                    if (btnTheme === theme) {
+                        btn.className = "flex-1 py-2 text-xs font-black bg-themeAccent text-themeBgAlt rounded-lg shadow-md transition-all";
+                    } else {
+                        btn.className = "flex-1 py-2 text-xs font-bold bg-themeBg text-themeTextMuted border border-themeBorder rounded-lg transition-all";
+                    }
+                });
+            };
+
+            const activeAppTheme = localStorage.getItem('homeshield_app_theme') || 'showroom';
+            applyAppTheme(activeAppTheme);
+
+            desktopSwatches.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const selected = dot.getAttribute('data-theme');
+                    applyAppTheme(selected);
+                    localStorage.setItem('homeshield_app_theme', selected);
+                });
+            });
+
+            mobileButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const selected = btn.getAttribute('data-theme');
+                    applyAppTheme(selected);
+                    localStorage.setItem('homeshield_app_theme', selected);
+                });
+            });
+
+            // Mobile Menu Drawer
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+
+            // ==========================================
+            // B. CURATED WALL COATING CATALOG SHADES DATA
+            // ==========================================
+            const catalogColors = [
+                // 1st block: default visible (12 items)
+                { name: "Air Breeze", hex: "#E7F5F6", code: "9436", temp: "cool", tone: "light", room: "bedroom", family: "white" },
+                { name: "Button Rose", hex: "#F3C5D1", code: "8108", temp: "warm", tone: "light", room: "kids", family: "purple" },
+                { name: "Soft Breeze", hex: "#DBECEE", code: "8116", temp: "cool", tone: "light", room: "living", family: "white" },
+                { name: "Zinnia Bloom", hex: "#EBD0AF", code: "8716", temp: "warm", tone: "light", room: "dining", family: "red" },
+                { name: "Essence", hex: "#F5E2E4", code: "8099", temp: "warm", tone: "light", room: "bedroom", family: "purple" },
+                { name: "Pink Mist", hex: "#ECE1EC", code: "8092", temp: "cool", tone: "light", room: "kids", family: "purple" },
+                { name: "Angel Harp", hex: "#F9EBDB", code: "8124", temp: "warm", tone: "light", room: "living", family: "white" },
+                { name: "Lucid Dream", hex: "#DBE2ED", code: "5182", temp: "cool", tone: "light", room: "study", family: "blue" },
+                { name: "Winged Angel", hex: "#F1E2E4", code: "8100", temp: "warm", tone: "light", room: "bedroom", family: "purple" },
+                { name: "Touch of Fuschia", hex: "#EBC2DE", code: "8140", temp: "cool", tone: "light", room: "highlight", family: "purple" },
+                { name: "Day Lily", hex: "#F3DCB7", code: "8060", temp: "warm", tone: "light", room: "hallway", family: "red" },
+                { name: "Tinge of Rose", hex: "#EEDCE6", code: "8084", temp: "cool", tone: "light", room: "bedroom", family: "purple" },
+                
+                // 2nd block: dynamic load more (11 items)
+                { name: "Soft Chenille", hex: "#E9DFCE", code: "8036", temp: "warm", tone: "light", room: "dining", family: "yellow" },
+                { name: "Zen", hex: "#DBEBE1", code: "8676", temp: "cool", tone: "light", room: "study", family: "yellow" },
+                { name: "White Clay", hex: "#DDD8CF", code: "8620", temp: "cool", tone: "light", room: "living", family: "grey" },
+                { name: "Milkshake", hex: "#F6ECDD", code: "8012", temp: "warm", tone: "light", room: "kids", family: "white" },
+                { name: "Lilac Frost", hex: "#DFD2E2", code: "7148", temp: "cool", tone: "light", room: "bedroom", family: "purple" },
+                { name: "Twilight Sky", hex: "#B8C6E2", code: "8204", temp: "cool", tone: "medium", room: "highlight", family: "blue" },
+                { name: "Daisy Bloom", hex: "#FCF5D5", code: "L178", temp: "warm", tone: "light", room: "kitchen", family: "yellow" },
+                { name: "Willow Creek", hex: "#8F897B", code: "8068", temp: "cool", tone: "medium", room: "balcony", family: "brown" },
+                { name: "Gossamer", hex: "#EFEBE1", code: "8052", temp: "warm", tone: "light", room: "living", family: "white" },
+                { name: "Blush", hex: "#F9DCDB", code: "L139", temp: "warm", tone: "light", room: "kids", family: "purple" },
+                { name: "Summer Blush-N", hex: "#E4BE9F", code: "0945", temp: "warm", tone: "medium", room: "dining", family: "brown" }
+            ];
+
+            let activeFamily = 'all';
+            let loadedMore = false;
+            const shadesGrid = document.getElementById('catalog-shades-grid');
+            const btnLoadMore = document.getElementById('btn-load-more');
+            const loadMoreContainer = document.getElementById('load-more-container');
+            const copyToast = document.getElementById('copy-toast');
+            const copyToastText = document.getElementById('copy-toast-text');
+
+            const triggerToast = (msg) => {
+                if (!copyToast) return;
+                copyToastText.textContent = msg;
+                copyToast.classList.remove('translate-y-20', 'opacity-0');
+                copyToast.classList.add('translate-y-0', 'opacity-100');
+                setTimeout(() => {
+                    copyToast.classList.remove('translate-y-0', 'opacity-100');
+                    copyToast.classList.add('translate-y-20', 'opacity-0');
+                }, 2200);
+            };
+
+            const renderShades = () => {
+                if (!shadesGrid) return;
+                shadesGrid.innerHTML = '';
+
+                // Read selected filters
+                const selectedTemps = Array.from(document.querySelectorAll('input[data-filter="temp"]:checked')).map(el => el.value);
+                const selectedTones = Array.from(document.querySelectorAll('input[data-filter="tone"]:checked')).map(el => el.value);
+                const selectedRooms = Array.from(document.querySelectorAll('input[data-filter="room"]:checked')).map(el => el.value);
+
+                let filtered = catalogColors.filter(color => {
+                    const matchesFamily = activeFamily === 'all' || color.family === activeFamily;
+                    const matchesTemp = selectedTemps.length === 0 || selectedTemps.includes(color.temp);
+                    const matchesTone = selectedTones.length === 0 || selectedTones.includes(color.tone);
+                    const matchesRoom = selectedRooms.length === 0 || selectedRooms.includes(color.room);
+                    return matchesFamily && matchesTemp && matchesTone && matchesRoom;
+                });
+
+                // Handle pagination
+                const maxToShow = loadedMore ? filtered.length : 12;
+                const itemsToRender = filtered.slice(0, maxToShow);
+
+                // Show/hide load more container
+                if (filtered.length <= maxToShow) {
+                    if (loadMoreContainer) loadMoreContainer.classList.add('hidden');
+                } else {
+                    if (loadMoreContainer) loadMoreContainer.classList.remove('hidden');
+                }
+
+                itemsToRender.forEach(color => {
+                    const card = document.createElement('div');
+                    card.className = "color-catalog-card glass-panel p-4 rounded-2xl flex flex-col justify-between space-y-4 hover:border-themeAccent/45 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 text-themeText cursor-pointer";
+                    card.innerHTML = `
+                        <div class="h-28 w-full rounded-xl shadow-inner relative overflow-hidden flex items-center justify-center cursor-pointer active-paint-trigger" style="background-color: ${color.hex}">
+                            <span class="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-[9px] font-black uppercase tracking-widest transition-opacity duration-200">
+                                Paint in Studio
+                            </span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-xs font-black truncate max-w-[90px]">${color.name}</h4>
+                                <span class="text-[8px] font-bold text-themeTextMuted select-none uppercase tracking-widest">${color.code}</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] font-mono">
+                                <span class="font-bold text-themeAccent select-all">${color.hex}</span>
+                                <button class="text-themeTextMuted hover:text-themeAccent transition-colors copy-code-btn shrink-0" title="Copy HEX Code">
+                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                    // Click active overlay to Paint in Studio (saves to localStorage and redirects)
+                    card.querySelector('.active-paint-trigger').addEventListener('click', () => {
+                        localStorage.setItem('homeshield_pending_paint', JSON.stringify({ hex: color.hex, name: color.name }));
+                        window.location.href = './index.html#visualizer';
+                    });
+
+                    // Click Copy button to duplicate code
+                    card.querySelector('.copy-code-btn').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        navigator.clipboard.writeText(color.hex.toUpperCase());
+                        triggerToast(`Copied ${color.name} HEX code!`);
+                    });
+
+                    shadesGrid.appendChild(card);
+                });
+            };
+
+            // Hook Load More
+            if (btnLoadMore) {
+                btnLoadMore.addEventListener('click', () => {
+                    loadedMore = true;
+                    renderShades();
+                });
+            }
+
+            // Hook Family Tabs
+            const familyTabs = document.querySelectorAll('.family-tab');
+            familyTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const fam = tab.getAttribute('data-family');
+                    activeFamily = fam;
+
+                    // Toggle active classes
+                    familyTabs.forEach(t => {
+                        t.className = t.className.replace("bg-themeAccent text-themeBgAlt shadow-md", "text-themeTextMuted hover:text-themeText hover:bg-themeBg");
+                    });
+                    tab.className = tab.className.replace("text-themeTextMuted hover:text-themeText hover:bg-themeBg", "bg-themeAccent text-themeBgAlt shadow-md");
+
+                    loadedMore = false; // Reset pagination on tab swap
+                    renderShades();
+                });
+            });
+
+            // Hook Checkbox filter elements
+            const filterCheckboxes = document.querySelectorAll('input[data-filter]');
+            filterCheckboxes.forEach(box => {
+                box.addEventListener('change', () => {
+                    loadedMore = false;
+                    renderShades();
+                });
+            });
+
+            // Reset filters
+            const btnResetFilters = document.getElementById('btn-reset-filters');
+            if (btnResetFilters) {
+                btnResetFilters.addEventListener('click', () => {
+                    filterCheckboxes.forEach(box => box.checked = false);
+                    loadedMore = false;
+                    renderShades();
+                    triggerToast("All filters reset!");
+                });
+            }
+
+            // Render catalog on page load
+            renderShades();
+
+
+            // ==========================================
+            // C. INTERACTIVE COLOR PERSONALITY QUIZ MODULE
+            // ==========================================
+            const quizButtons = document.querySelectorAll('.quiz-vibe-btn');
+            const btnSubmitQuiz = document.getElementById('btn-submit-quiz');
+            const quizResultBox = document.getElementById('quiz-result-box');
+            const quizResultTitle = document.getElementById('quiz-result-title');
+            const quizResultDesc = document.getElementById('quiz-result-desc');
+            const quizResultSwatch = document.getElementById('quiz-result-swatch');
+            const quizResultShadeName = document.getElementById('quiz-result-shade-name');
+            const quizResultShadeCode = document.getElementById('quiz-result-shade-code');
+            const btnPaintQuizShade = document.getElementById('btn-paint-quiz-shade');
+
+            let selectedQuizVibe = '';
+
+            const vibeResults = {
+                Calm: { title: "Calm & Relaxing Vibe", hex: "#E7F5F6", shade: "Air Breeze (9436)", desc: "You value serenity and absolute peace. We recommend light blue and soft aqua tones to establish a soothing mental refuge in your master bedroom." },
+                Spiritual: { title: "Spiritual & Pure Vibe", hex: "#EFEBE1", shade: "Gossamer (8052)", desc: "You seek mindfulness and positive energy. Pristine off-whites and light cream tones allow natural light to reflect fully, creating spiritual clarity." },
+                Friendly: { title: "Friendly & Warm Vibe", hex: "#EBD0AF", shade: "Zinnia Bloom (8716)", desc: "You are welcoming and warm-hearted. We recommend cheerful sunset terracotta and warm peach tones to create cozy, hospitable dining zones." },
+                Passionate: { title: "Passionate & Energetic Vibe", hex: "#E4BE9F", shade: "Summer Blush (0945)", desc: "You are bold, inspired, and highly energetic. Earthy deep orange clays and warm tones coordinate perfectly to establish custom visual warmth." },
+                Creative: { title: "Creative & Artistic Vibe", hex: "#DFD2E2", shade: "Lilac Frost (7148)", desc: "You are expressive, imaginative, and highly unique. Lavender and pastel lilac tones invite artistic focus and inspire visual innovation." },
+                Sophisticated: { title: "Sophisticated & Modern Vibe", hex: "#DDD8CF", code: "8620", shade: "White Clay (8620)", desc: "You embrace minimalism and clean architectural design. Slate pebble greys are perfect to define sleek modern highlights in your living spaces." }
+            };
+
+            quizButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    selectedQuizVibe = btn.getAttribute('data-vibe');
+                    
+                    // Highlight selected button
+                    quizButtons.forEach(b => {
+                        b.className = b.className.replace("ring-2 ring-themeAccent border-themeAccent bg-themeBgAlt", "border-themeBorder bg-themeBg");
+                    });
+                    btn.className = btn.className.replace("border-themeBorder bg-themeBg", "ring-2 ring-themeAccent border-themeAccent bg-themeBgAlt");
+                    
+                    // Enable submit button
+                    if (btnSubmitQuiz) {
+                        btnSubmitQuiz.removeAttribute('disabled');
+                        btnSubmitQuiz.className = btnSubmitQuiz.className.replace("disabled:opacity-40", "");
+                    }
+                });
+            });
+
+            if (btnSubmitQuiz) {
+                btnSubmitQuiz.addEventListener('click', () => {
+                    const result = vibeResults[selectedQuizVibe];
+                    if (!result) return;
+
+                    // Update UI text
+                    quizResultTitle.textContent = result.title;
+                    quizResultDesc.textContent = result.desc;
+                    quizResultSwatch.style.backgroundColor = result.hex;
+                    quizResultShadeName.textContent = result.shade;
+                    quizResultShadeCode.textContent = result.hex;
+
+                    // Show output
+                    quizResultBox.classList.remove('hidden');
+                    
+                    // Scroll output smoothly into view
+                    quizResultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            }
+
+            // Click Paint inside Quiz results card
+            if (btnPaintQuizShade) {
+                btnPaintQuizShade.addEventListener('click', () => {
+                    const result = vibeResults[selectedQuizVibe];
+                    if (result) {
+                        localStorage.setItem('homeshield_pending_paint', JSON.stringify({ hex: result.hex, name: result.shade }));
+                        window.location.href = './index.html#visualizer';
+                    }
+                });
+            }
+
+
+            // ==========================================
+            // D. PORTABLE RECOMMENDATION PAINTER
+            // ==========================================
+            document.querySelectorAll('.recommended-paint-trigger').forEach(el => {
+                el.addEventListener('click', () => {
+                    const hex = el.getAttribute('data-hex');
+                    const name = el.getAttribute('data-name');
+                    if (hex && name) {
+                        localStorage.setItem('homeshield_pending_paint', JSON.stringify({ hex, name }));
+                        window.location.href = './index.html#visualizer';
+                    }
+                });
+            });
+
+
+            // ==========================================
+            // E. FAQs COLLAPSIBLE ACCORDION SYSTEM
+            // ==========================================
+            const faqPanels = document.querySelectorAll('.faq-panel');
+            faqPanels.forEach(panel => {
+                const btn = panel.querySelector('button');
+                btn.addEventListener('click', () => {
+                    // Check if already active
+                    const isActive = panel.classList.contains('active');
+                    
+                    // Close all FAQs first
+                    faqPanels.forEach(p => p.classList.remove('active'));
+                    
+                    // Toggle if was not active
+                    if (!isActive) {
+                        panel.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
