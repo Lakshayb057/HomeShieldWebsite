@@ -257,8 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 let featuresHtml = '';
                 product.features.forEach(f => {
                     const formatted = f.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                    featuresHtml += `<li class="flex items-start space-x-3 text-slate-300 text-sm">
-                        <svg class="w-5 h-5 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                    featuresHtml += `<li class="flex items-start space-x-3 text-themeText text-sm">
+                        <svg class="w-5 h-5 text-themeAccent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
                         <span>${formatted}</span>
                     </li>`;
                 });
@@ -266,18 +266,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Build Specs HTML
                 let specsHtml = '';
                 for (const [key, val] of Object.entries(product.specs)) {
-                    specsHtml += `<div class="flex justify-between items-center py-2.5 border-b border-slate-800/80">
-                        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">${key}</span>
-                        <span class="text-xs font-bold text-white text-right">${val}</span>
+                    specsHtml += `<div class="flex justify-between items-center py-2.5 border-b border-themeBorder">
+                        <span class="text-xs text-themeTextMuted font-bold uppercase tracking-wider">${key}</span>
+                        <span class="text-xs font-bold text-themeText text-right">${val}</span>
                     </div>`;
                 }
 
                 // Build Directions HTML
                 let directionsHtml = '';
                 product.directions.forEach(step => {
-                    const formatted = step.replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-500">$1</strong>');
-                    directionsHtml += `<div class="bg-navy-950 p-4 rounded-xl border border-slate-800/50 space-y-1">
-                        <p class="text-xs text-slate-300 font-medium leading-relaxed">${formatted}</p>
+                    const formatted = step.replace(/\*\*(.*?)\*\*/g, '<strong class="text-themeAccent">$1</strong>');
+                    directionsHtml += `<div class="bg-themeBgAlt p-4 rounded-xl border border-themeBorder space-y-1">
+                        <p class="text-xs text-themeText font-medium leading-relaxed">${formatted}</p>
                     </div>`;
                 });
 
@@ -285,13 +285,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalDynamicContent.innerHTML = `
                     <!-- Left: Product Image & Spec Details -->
                     <div class="md:col-span-5 space-y-6">
-                        <div class="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-square">
+                        <div class="relative rounded-2xl overflow-hidden bg-themeBg border border-themeBorder aspect-square">
                             <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-themeBg via-transparent to-transparent"></div>
                         </div>
                         <div class="space-y-4">
-                            <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Product Specifications</h4>
-                            <div class="bg-navy-950 p-4 rounded-2xl border border-slate-800/60">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-themeTextMuted">Product Specifications</h4>
+                            <div class="bg-themeBgAlt p-4 rounded-2xl border border-themeBorder">
                                 ${specsHtml}
                             </div>
                         </div>
@@ -300,22 +300,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Right: Product Description, Features & Directions -->
                     <div class="md:col-span-7 space-y-6">
                         <div class="space-y-2">
-                            <span class="text-xs text-gold-500 font-extrabold uppercase tracking-widest">${product.category}</span>
-                            <h3 class="text-3xl font-extrabold text-white">${product.title}</h3>
-                            <p class="text-sm text-slate-400 font-medium italic">${product.tagline}</p>
+                            <span class="text-xs text-themeAccent font-extrabold uppercase tracking-widest">${product.category}</span>
+                            <h3 class="text-3xl font-extrabold text-themeText">${product.title}</h3>
+                            <p class="text-sm text-themeTextMuted font-medium italic">${product.tagline}</p>
                         </div>
 
                         <!-- Core Features List -->
                         <div class="space-y-3">
-                            <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Key Features</h4>
-                            <ul class="space-y-3 bg-navy-950 p-6 rounded-2xl border border-slate-800/60">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-themeTextMuted">Key Features</h4>
+                            <ul class="space-y-3 bg-themeBgAlt p-6 rounded-2xl border border-themeBorder">
                                 ${featuresHtml}
                             </ul>
                         </div>
 
                         <!-- Directions Checklist -->
                         <div class="space-y-3">
-                            <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Directions of Use (Label Specifications)</h4>
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-themeTextMuted">Directions of Use (Label Specifications)</h4>
                             <div class="space-y-3">
                                 ${directionsHtml}
                             </div>
